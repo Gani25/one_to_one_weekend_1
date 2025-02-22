@@ -72,4 +72,25 @@ public class InstructorController {
             return null;
         }
     }
+
+    @DeleteMapping("/instructor/{insId}")
+    public Instructor deleteInstructor(@PathVariable int insId) {
+        Instructor dbInstructor = instructorRepository.findById(insId).orElse(null);
+        if (dbInstructor != null) {
+            instructorRepository.delete(dbInstructor);
+            return dbInstructor;
+        } else {
+            return null;
+        }
+    }
+
+    @GetMapping("/instructor/{ins_id}")
+    public Instructor getInstructorById(@PathVariable int ins_id) {
+
+        Instructor dbInstructor = instructorRepository.findById(ins_id).get();
+
+        return dbInstructor;
+
+
+    }
 }

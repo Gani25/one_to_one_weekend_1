@@ -1,9 +1,8 @@
 package com.sprk.one_to_one.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
 
@@ -19,4 +18,8 @@ public class InstructorDetail {
     private String hobby;
 
     private String education;
+
+    @OneToOne(mappedBy = "instructorDetail", cascade = {CascadeType.MERGE, CascadeType.DETACH, CascadeType.PERSIST})
+    @JsonBackReference
+    private Instructor instructor;
 }
